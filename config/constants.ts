@@ -3,6 +3,10 @@ const ENVIRONMENT = {
     production: process.env.NEXT_PUBLIC_ENVIRONMENT === 'production',
 };
 
+const PAGE_NEXT = 1;
+
+const COMPANY_LOGO = 'Exhibitions!';
+
 const API = {
     baseURL: process.env.NEXT_PUBLIC_API_URL,
     error: {
@@ -27,7 +31,9 @@ const CLIENT_ROUTES = {
 const constants = {
     API,
     CLIENT_ROUTES,
+    COMPANY_LOGO,
     ENVIRONMENT,
+    PAGE_NEXT,
 }
 
 export default constants;

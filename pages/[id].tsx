@@ -5,6 +5,7 @@ import constants from '@/pageComponents/constants';
 import SingleArtSection from '@/pageComponents/SingleArtSection';
 import art, { ISingleExhibition } from '@/services/art';
 import configConstants from 'config/constants';
+import logger from '@logger';
 
 const { PAGE_HEAD } = constants;
 const { CLIENT_ROUTES } = configConstants;
@@ -38,8 +39,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
 
     const singleArt = await art.getSingleArt(id.toString());
+    logger(singleArt);
 
-    if (!singleArt) {
+    if (singleArt.status === 404) {
         return {
             props: {},
             redirect: {

@@ -1,4 +1,4 @@
-import {Exhibition, Pagination, PaginationPayload, SingleExhibition } from '@/common/types';
+import {Exhibition, Pagination, SingleExhibition } from '@/common/types';
 import constants from '@config/constants';
 import request from '@config/services/request';
 
@@ -13,14 +13,14 @@ export interface IExhibition  {
 
 export interface ISingleExhibition   {
     data: SingleExhibition;
+    status?: number;
 }
 
-const getArts = ({ pageLimit, page }: PaginationPayload): Promise<IExhibition> => {
+const getArts = ( page: number ): Promise<IExhibition> => {
     return request.get({
         config: {
             params: {
                 page,
-                perpage: pageLimit,
             },
         },
         route: routes.exhibitions,
