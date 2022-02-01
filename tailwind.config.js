@@ -17,6 +17,8 @@ module.exports = {
       colors: {
         'exhibition-grey': '#676767',
         'back-btn' : '#0029FF',
+        'yellow': '#FED330',
+        'green': '#27ae60',
     },
     },
   },

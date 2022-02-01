@@ -1,20 +1,17 @@
 import { PaginationPayload } from '@/common/types';
 import { IExhibition } from '@/services/art';
-import React, { createContext, useContext } from 'react';
+import React, { createContext, Dispatch, SetStateAction, useContext } from 'react';
 
 export interface IExhibitionContext {
     data: IExhibition | undefined;
-    pagination: PaginationPayload;
-    setPagination: ({ page, pageLimit }: PaginationPayload) => void;
+    page: number;
+    setPage: Dispatch<SetStateAction<number>>;
 }
 
 const initialState = {
     data: undefined,
-    pagination: {
-        page: 1,
-        pageLimit: 12,
-    },
-    setPagination: () => {},
+    page: 1,
+    setPage: () => {},
 };
 
 const ExhibitionContext = createContext<IExhibitionContext>(initialState);

@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import dayjs from 'dayjs';
+import Tag from '@/common/components/Tag';
 
 interface IProps {
     image?: string;
@@ -20,8 +21,12 @@ const ArtCard: React.FC<IProps> = ({ image, id, startDate, endDate, exhibitionNa
                 <Image src={image || '/assets/images/default.svg'} width={320} height={226} alt="art" />
             </figure>
             <div>
-                <h2 className="text-lg font-normal text-left">{exhibitionName}</h2>
-                <p className="text-sm font-normal italic text-left">{`${getDate(startDate)} - ${getDate(endDate)}`}</p>
+                <h2 className="text-lg font-normal text-left w-64">{exhibitionName}</h2>
+                <Tag>
+                    <p className="text-sm font-normal italic text-left w-auto">{`${getDate(startDate)} - ${getDate(
+                        endDate,
+                    )}`}</p>
+                </Tag>
             </div>
         </button>
     );

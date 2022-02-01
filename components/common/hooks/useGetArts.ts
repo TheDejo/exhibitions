@@ -8,21 +8,18 @@ const {
     API: { routes },
 } = config;
 
-const useGetArts = (
-    limit?: number,
-): IExhibitionContext => {
-    const [pagination, setPagination] = useState({ page: 1, pageLimit: limit ?? 12 });
-    const { page, pageLimit } = pagination;
+const useGetArts = (): IExhibitionContext => {
+    const [page, setPage] = useState(1);
 
     const fetcher = async () => {
-        return await art.getArts({ ...pagination });
+        return await art.getArts(page);
     };
-    const { data } = useSWR([routes.exhibitions, page, pageLimit], fetcher);
+    const { data } = useSWR([routes.exhibitions, page], fetcher);
 
     return {
         data,
-        pagination,
-        setPagination,
+        page,
+        setPage,
     };
 };
 
