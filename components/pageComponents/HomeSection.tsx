@@ -3,46 +3,15 @@ import ArtCard from '@/common/blocks/ArtCard';
 import constants from './constants';
 import configConstant from '@config/constants';
 import { useExhibitionContext } from './context/ExhibitionContext';
+import logger from '@logger';
+import Pagination from '@/common/components/Pagination';
 
 const { SCREEN_TEXTS } = constants;
 const { PAGE_NEXT } = configConstant;
 
 const HomeSection: React.FC = () => {
     const { data, page, setPage } = useExhibitionContext();
-    const [element, setElement] = useState<HTMLDivElement | null>(null);
     const loading = typeof data === 'undefined';
-    if (typeof window !== 'undefined') {
-        const loader = useRef(() => setPage(page));
-        const observer = useRef(
-            new IntersectionObserver(
-                (entries) => {
-                    const first = entries[0];
-                    if (first.isIntersecting) {
-                        loader.current();
-                    }
-                },
-                { threshold: 1 },
-            ),
-        );
-
-        useEffect(() => {
-            loader.current = () => setPage(page + PAGE_NEXT);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, [page]);
-
-        useEffect(() => {
-            const currentElement = element;
-            const currentObserver = observer.current;
-            if (currentElement) {
-                currentObserver.observe(currentElement);
-            }
-            return () => {
-                if (currentElement) {
-                    currentObserver.unobserve(currentElement);
-                }
-            };
-        }, [element]);
-    }
 
     return (
         <section className="flex flex-col justify-center items-center">
@@ -59,13 +28,7 @@ const HomeSection: React.FC = () => {
                     />
                 ))}
             </div>
-            <div className="container mx-auto py-10 flex justify-center items-center">
-                {!loading && data.pagination.total_pages > data.pagination.current_page && (
-                    <div ref={setElement} className="text-2xl italic font-normal">
-                        {SCREEN_TEXTS.loading}
-                    </div>
-                )}
-            </div>
+            <Pagination data={data} setPage={setPage} page={page} loading={loading} />
         </section>
     );
 };

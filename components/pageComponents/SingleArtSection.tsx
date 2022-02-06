@@ -38,6 +38,7 @@ const SingleArtSection = ({ data }: IProps) => {
                             width={370}
                             height={260}
                             alt="art"
+                            priority
                         />
                     </figure>
                     <p className="max-w-96 md:col-span-2">{data.description || '-'}</p>

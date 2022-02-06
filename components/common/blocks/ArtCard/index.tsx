@@ -18,7 +18,7 @@ const ArtCard: React.FC<IProps> = ({ image, id, startDate, endDate, exhibitionNa
     return (
         <button onClick={() => router.push(id)} className="p-0 flex flex-col items-start">
             <figure>
-                <Image src={image || '/assets/images/default.svg'} width={320} height={226} alt="art" />
+                <Image src={image || '/assets/images/default.svg'} width={320} height={226} alt="art" priority />
             </figure>
             <div>
                 <h2 className="text-lg font-normal text-left w-64">{exhibitionName}</h2>
