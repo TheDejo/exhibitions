@@ -10,9 +10,9 @@ const Tag: React.FC<IProps> = ({ color, children }: IProps) => {
         <div
             className={`${
                 color === 'yellow'
-                    ? 'bg-yellow border text-yellow bg-opacity-5 border-yellow rounded-md py-2 px-4 w-64 '
-                    : 'bg-green border text-green bg-opacity-5 border-green rounded-md py-2 px-4 w-64'
-            }`}
+                    ? 'bg-yellow border text-yellow bg-opacity-5 border-yellow'
+                    : 'bg-green border text-green bg-opacity-5 border-green'
+            } rounded-md py-2 px-4 w-64`}
         >
             {children}
         </div>
